@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .active {
+        color:#ff4400;
+    }
+    .line{
+        text-decoration: underline;
+    }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <div v-bind:class="{active:isActive,line:isUnderLine}">
+         内联对象
+        </div>
+        <div v-bind:class="classObject">
+            计算属性作为对象直接使用
+        </div>
+        <div v-bind:class="['active','line']">
+            数组，数组元素直接是样式class的名字
+        </div>
+
+        <div v-bind:class="[{active:isActive},'line']">
+            数组内嵌入对象语法
+        </div>
+    </div>
+
+    <script src="../vue/vue.js"></script>
+    <script>
+        
+        var app = new Vue({
+            el:"#app",
+            data:{
+                isUnderLine:true,
+                isActive:true,
+                message:'hello vue'
+            },
+            computed:{
+                classObject(){
+                    return {
+                        active:this.isUnderLine,
+                        line:this.isActive, 
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
